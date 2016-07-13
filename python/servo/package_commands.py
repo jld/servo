@@ -134,9 +134,9 @@ class PackageCommands(CommandBase):
                 need_checked.difference_update(checked)
 
             print("Writing run-servo")
-            bhtml_path = path.join('${0%/*}/../Resources', browserhtml_path.split('/')[-1], 'out', 'index.html')
+            bhtml_path = path.join('"${0%/*}"/../Resources', browserhtml_path.split('/')[-1], 'out', 'index.html')
             runservo = os.open(dir_to_app + '/Contents/MacOS/run-servo', os.O_WRONLY | os.O_CREAT, int("0755", 8))
-            os.write(runservo, '#!/bin/bash\nexec ${0%/*}/servo ' + bhtml_path)
+            os.write(runservo, '#!/bin/bash\nexec "${0%/*}"/servo ' + bhtml_path)
             os.close(runservo)
 
             print("Creating dmg")
