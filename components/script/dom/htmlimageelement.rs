@@ -87,8 +87,11 @@ impl Runnable for ImageResponseHandlerRunnable {
         let element = self.element.root();
         let element_ref = element.r();
         let (image, metadata, trigger_image_load, trigger_image_error) = match self.image {
-            ImageResponse::Loaded(image) | ImageResponse::PlaceholderLoaded(image) => {
+            ImageResponse::Loaded(image) => {
                 (Some(image.clone()), Some(ImageMetadata { height: image.height, width: image.width } ), true, false)
+            }
+            ImageResponse::PlaceholderLoaded(image) => {
+                (Some(image.clone()), Some(ImageMetadata { height: image.height, width: image.width } ), false, true)
             }
             ImageResponse::MetadataLoaded(meta) => {
                 (None, Some(meta), false, false)
