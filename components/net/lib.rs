@@ -65,9 +65,11 @@ pub mod pub_domains;
 pub mod resource_thread;
 pub mod storage_thread;
 #[cfg(feature = "tls-openssl")] pub mod tls_openssl;
+#[cfg(feature = "tls-nss")] pub mod tls_nss;
 pub mod websocket_loader;
 
 #[cfg(feature = "tls-openssl")] pub use tls_openssl as tls;
+#[cfg(feature = "tls-nss")] pub use tls_nss as tls;
 
 /// An implementation of the [Fetch specification](https://fetch.spec.whatwg.org/)
 pub mod fetch {

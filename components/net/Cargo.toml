@@ -11,6 +11,7 @@ path = "lib.rs"
 
 [features]
 tls-openssl = ["openssl", "openssl-verify", "hyper/ssl"]
+tls-nss = ["nss-hyper"]
 
 [dependencies]
 bitflags = "0.7"
@@ -49,6 +50,11 @@ websocket = "0.17"
 git = "https://github.com/servo/webrender"
 default_features = false
 features = ["serde_macros"]
+
+[dependencies.nss-hyper]
+version = "0.4.7"
+path = "../../../nss-rs/nss-hyper"
+optional = true
 
 [target.'cfg(any(target_os = "macos", target_os = "linux", target_os = "windows"))'.dependencies]
 tinyfiledialogs = {git = "https://github.com/jdm/tinyfiledialogs"}

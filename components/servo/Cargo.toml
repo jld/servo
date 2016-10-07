@@ -25,6 +25,7 @@ max_log_level = ["log/release_max_level_info"]
 webdriver = ["webdriver_server"]
 energy-profiling = ["profile_traits/energy-profiling"]
 tls-openssl = ["net/tls-openssl"]
+tls-nss = [ "net/tls-nss"]
 
 [profile.release]
 opt-level = 3
