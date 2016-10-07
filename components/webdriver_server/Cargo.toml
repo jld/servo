@@ -11,7 +11,7 @@ path = "lib.rs"
 
 [dependencies]
 euclid = "0.10.1"
-hyper = "0.9.9"
+hyper = {version = "0.9.9", default_features = false}
 image = "0.10"
 ipc-channel = "0.5"
 log = "0.3.5"
