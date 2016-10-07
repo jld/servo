@@ -20,7 +20,7 @@ doc = false
 bench = false
 
 [features]
-default = ["webdriver", "max_log_level", "tls-openssl"]
+default = ["webdriver", "max_log_level", "tls-nss"]
 max_log_level = ["log/release_max_level_info"]
 webdriver = ["webdriver_server"]
 energy-profiling = ["profile_traits/energy-profiling"]
