@@ -9,6 +9,9 @@ publish = false
 name = "net"
 path = "lib.rs"
 
+[features]
+tls-openssl = ["openssl", "openssl-verify", "hyper/ssl"]
+
 [dependencies]
 bitflags = "0.7"
 brotli = "1.0.6"
@@ -17,7 +20,7 @@ cookie = {version = "0.2.5", features = ["serialize-rustc"]}
 device = {git = "https://github.com/servo/devices"}
 devtools_traits = {path = "../devtools_traits"}
 flate2 = "0.2.0"
-hyper = "0.9.9"
+hyper = {version = "0.9.9", default_features = false}
 hyper_serde = "0.1.4"
 immeta = "0.3.1"
 ipc-channel = "0.5"
@@ -28,8 +31,8 @@ mime = "0.2.1"
 mime_guess = "1.8.0"
 msg = {path = "../msg"}
 net_traits = {path = "../net_traits"}
-openssl = "0.7.6"
-openssl-verify = "0.1"
+openssl = {version = "0.7.6", optional = true}
+openssl-verify = {version = "0.1", optional = true}
 plugins = {path = "../plugins"}
 profile_traits = {path = "../profile_traits"}
 rand = "0.3"

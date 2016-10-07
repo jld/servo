@@ -34,8 +34,6 @@ use net_traits::{CustomResponse, CustomResponseMediator, Metadata, NetworkError}
 use net_traits::ProgressMsg::{Done, Payload};
 use net_traits::hosts::replace_hosts;
 use net_traits::response::HttpsState;
-use openssl;
-use openssl::ssl::error::{OpensslError, SslError};
 use profile_traits::time::{ProfilerCategory, ProfilerChan, TimerMetadata, profile};
 use profile_traits::time::{TimerMetadataFrameType, TimerMetadataReflowType};
 use resource_thread::{AuthCache, AuthCacheEntry, CancellationListener, send_error, start_sending_sniffed_opt};
@@ -52,6 +50,7 @@ use time;
 use time::Tm;
 #[cfg(any(target_os = "macos", target_os = "linux", target_os = "windows"))]
 use tinyfiledialogs;
+use tls::explain_tls_error;
 use url::{Position, Url, Origin};
 use util::prefs::PREFS;
 use util::thread::spawn_named;
@@ -262,25 +261,8 @@ impl HttpRequestFactory for NetworkHttpRequestFactory {
         let connection = Request::with_connector(method, url.clone(), &*self.connector);
 
         if let Err(HttpError::Ssl(ref error)) = connection {
-            let error: &(Error + Send + 'static) = &**error;
-            if let Some(&SslError::OpenSslErrors(ref errors)) = error.downcast_ref::<SslError>() {
-                if errors.iter().any(is_cert_verify_error) {
-                    let mut error_report = vec![format!("ssl error ({}):", openssl::version::version())];
-                    let mut suggestion = None;
-                    for err in errors {
-                        if is_unknown_message_digest_err(err) {
-                            suggestion = Some("<b>Servo recommends upgrading to a newer OpenSSL version.</b>");
-                        }
-                        error_report.push(format_ssl_error(err));
-                    }
-
-                    if let Some(suggestion) = suggestion {
-                        error_report.push(suggestion.to_owned());
-                    }
-
-                    let error_report = error_report.join("<br>\n");
-                    return Err(LoadError::new(url, LoadErrorType::Ssl { reason: error_report }));
-                }
+            if let Some(error_report) = explain_tls_error(&**error) {
+                return Err(LoadError::new(url, LoadErrorType::Ssl { reason: error_report }));
             }
         }
 
@@ -1150,35 +1132,6 @@ fn send_data<R: Read>(context: LoadContext,
     }
 
     let _ = progress_chan.send(Done(Ok(())));
-}
-
-// FIXME: This incredibly hacky. Make it more robust, and at least test it.
-fn is_cert_verify_error(error: &OpensslError) -> bool {
-    match error {
-        &OpensslError::UnknownError { ref library, ref function, ref reason } => {
-            library == "SSL routines" &&
-            function.to_uppercase() == "SSL3_GET_SERVER_CERTIFICATE" &&
-            reason == "certificate verify failed"
-        }
-    }
-}
-
-fn is_unknown_message_digest_err(error: &OpensslError) -> bool {
-    match error {
-        &OpensslError::UnknownError { ref library, ref function, ref reason } => {
-            library == "asn1 encoding routines" &&
-            function == "ASN1_item_verify" &&
-            reason == "unknown message digest algorithm"
-        }
-    }
-}
-
-fn format_ssl_error(error: &OpensslError) -> String {
-    match error {
-        &OpensslError::UnknownError { ref library, ref function, ref reason } => {
-            format!("{}: {} - {}", library, function, reason)
-        }
-    }
 }
 
 fn to_resource_type(context: &LoadContext) -> ResourceType {

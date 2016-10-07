@@ -32,8 +32,6 @@ extern crate mime;
 extern crate mime_guess;
 extern crate msg;
 extern crate net_traits;
-extern crate openssl;
-extern crate openssl_verify;
 extern crate profile_traits;
 extern crate rand;
 extern crate rustc_serialize;
@@ -66,7 +64,10 @@ pub mod mime_classifier;
 pub mod pub_domains;
 pub mod resource_thread;
 pub mod storage_thread;
+#[cfg(feature = "tls-openssl")] pub mod tls_openssl;
 pub mod websocket_loader;
+
+#[cfg(feature = "tls-openssl")] pub use tls_openssl as tls;
 
 /// An implementation of the [Fetch specification](https://fetch.spec.whatwg.org/)
 pub mod fetch {
