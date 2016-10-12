@@ -1391,9 +1391,10 @@ dependencies = [
 
 [[package]]
 name = "mozilla-ca-certs"
-version = "0.1.2"
+version = "0.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "nss-certdata-parser 0.6.2",
+ "nss-certdata-parser 0.6.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "untrusted 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "webpki 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -1460,7 +1461,7 @@ dependencies = [
  "mime_guess 1.8.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "msg 0.0.1",
  "net_traits 0.0.1",
- "nss-hyper 0.4.8",
+ "nss-hyper 0.4.9 (registry+https://github.com/rust-lang/crates.io-index)",
  "openssl 0.7.14 (registry+https://github.com/rust-lang/crates.io-index)",
  "openssl-verify 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "plugins 0.0.1",
@@ -1557,16 +1558,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "nss"
-version = "0.7.0"
+version = "0.7.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "lazy_static 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "libc 0.2.16 (registry+https://github.com/rust-lang/crates.io-index)",
- "nss-sys 0.1.8",
+ "nss-sys 0.1.9 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "nss-certdata-parser"
 version = "0.6.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "nom 1.2.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "quick-error 1.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -1574,27 +1577,30 @@ dependencies = [
 
 [[package]]
 name = "nss-hyper"
-version = "0.4.8"
+version = "0.4.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "hyper 0.9.10 (registry+https://github.com/rust-lang/crates.io-index)",
- "nss 0.7.0",
- "nss-webpki 0.3.1",
+ "nss 0.7.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "nss-webpki 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "nss-sys"
-version = "0.1.8"
+version = "0.1.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "libc 0.2.16 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "nss-webpki"
-version = "0.3.1"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "mozilla-ca-certs 0.1.2",
- "nss 0.7.0",
+ "mozilla-ca-certs 0.1.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "nss 0.7.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "time 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)",
  "untrusted 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "webpki 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -2976,12 +2982,18 @@ dependencies = [
 "checksum mime 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)" = "b5c93a4bd787ddc6e7833c519b73a50883deb5863d76d9b71eb8216fb7f94e66"
 "checksum mime_guess 1.8.0 (registry+https://github.com/rust-lang/crates.io-index)" = "e9a7d89cb3bce9145b0d0339a0588b044e3e3e3faa1dcd74822ebdc36bfac020"
 "checksum miniz-sys 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)" = "9d1f4d337a01c32e1f2122510fed46393d53ca35a7f429cb0450abaedfa3ed54"
+"checksum mozilla-ca-certs 0.1.3 (registry+https://github.com/rust-lang/crates.io-index)" = "cf80cd146ce0d5a78dc0e3a3febd57c8ada973c77731ab0557b96a7040f6d3cd"
 "checksum mozjs_sys 0.0.0 (git+https://github.com/servo/mozjs)" = "<none>"
 "checksum mp3-metadata 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)" = "8ceb0f016543197868f060e560c0bd9fbdcf6fe4c7555e04b5d8b34ecd81e7aa"
 "checksum mp4parse 0.5.0 (registry+https://github.com/rust-lang/crates.io-index)" = "1e3d4b79704ee1a9d307a92d2cb2c7186a8eb7e40bfca41e1c2fa9fcb152390a"
 "checksum net2 0.2.26 (registry+https://github.com/rust-lang/crates.io-index)" = "5edf9cb6be97212423aed9413dd4729d62b370b5e1c571750e882cebbbc1e3e2"
 "checksum nodrop 0.1.8 (registry+https://github.com/rust-lang/crates.io-index)" = "0dbbadd3f4c98dea0bd3d9b4be4c0cdaf1ab57035cb2e41fce3983db5add7cc5"
 "checksum nom 1.2.4 (registry+https://github.com/rust-lang/crates.io-index)" = "a5b8c256fd9471521bcb84c3cdba98921497f1a331cbc15b8030fc63b82050ce"
+"checksum nss 0.7.1 (registry+https://github.com/rust-lang/crates.io-index)" = "cf366bd528ac644abaa7de9af03ac257eb92c0497b08f692dd9a185c2b4e3f76"
+"checksum nss-certdata-parser 0.6.2 (registry+https://github.com/rust-lang/crates.io-index)" = "71876443f7f1dfd7d1160db178d36bd9cb0c2f195ab6df01d50e5339faa952aa"
+"checksum nss-hyper 0.4.9 (registry+https://github.com/rust-lang/crates.io-index)" = "e786cf0880feb1e1f0a7289165e4b88978fe20b1a85ae044a045140c95747697"
+"checksum nss-sys 0.1.9 (registry+https://github.com/rust-lang/crates.io-index)" = "662871a1ee36a23e53130c5285163ed00a8eabb0d3d6a8ae030113b4182619f6"
+"checksum nss-webpki 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)" = "615cdc8e261adcb17c12d19030ddfd576eb14954e73e787fc6e4ee42623d059b"
 "checksum num 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)" = "5a9699207fab8b02bd0e56f8f06fee3f26d640303130de548898b4c9704f6d01"
 "checksum num-bigint 0.1.35 (registry+https://github.com/rust-lang/crates.io-index)" = "88b14378471f7c2adc5262f05b4701ef53e8da376453a8d8fee48e51db745e49"
 "checksum num-integer 0.1.32 (registry+https://github.com/rust-lang/crates.io-index)" = "fb24d9bfb3f222010df27995441ded1e954f8f69cd35021f6bef02ca9552fb92"
