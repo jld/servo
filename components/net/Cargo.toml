@@ -53,7 +53,6 @@ features = ["serde_macros"]
 
 [dependencies.nss-hyper]
 version = "0.4.7"
-path = "../../../nss-rs/nss-hyper"
 optional = true
 
 [target.'cfg(any(target_os = "macos", target_os = "linux", target_os = "windows"))'.dependencies]
